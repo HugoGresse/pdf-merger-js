@@ -1,6 +1,6 @@
 {
-  "name": "pdf-merger-js",
-  "version": "5.1.2",
+  "name": "hugo-pdf-merger-js",
+  "version": "5.1.3",
   "description": "merge multiple PDF documents, or parts of them, to a new PDF document",
   "type": "module",
   "engines": {
@@ -24,7 +24,7 @@
       "browser"
     ]
   },
-  "repository": "github:nbesli/pdf-merger-js",
+  "repository": "https://github.com/HugoGresse/pdf-merger-js",
   "keywords": [
     "pdf",
     "merge"
