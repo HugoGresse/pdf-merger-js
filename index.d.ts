@@ -4,55 +4,7 @@
 
 import { PathLike } from "fs-extra";
 
-declare module "pdf-merger-js" {
-  export class PDFMerger {
-    constructor();
-    /**
-     * Resets the internal state of the document, to start again.
-     *
-     * @returns {void}
-     */
-    reset(): void;
-    /**
-     * Add pages from a PDF document to the end of the merged document.
-     *
-     * @async
-     * @param {PdfInput} input - a pdf source
-     * @param {string | string[] | number | number[] | undefined | null} [pages]
-     * @returns {Promise<void>}
-     */
-    add(
-      inputFile: PdfInput,
-      pages?: string | string[] | number | number[] | undefined | null
-    ): Promise<void>;
-    /**
-     * Save the merged PDF to the given path.
-     *
-     * @async
-     * @param {string | PathLike} fileName
-     * @returns {Promise<void>}
-     */
-    save(fileName: string): Promise<void>;
-    /**
-     * Return the merged PDF as a Buffer.
-     *
-     * @async
-     * @returns {Promise<Buffer>}
-     */
-    saveAsBuffer(): Promise<Buffer>;
-    /**
-     * Set the metadata of the merged PDF.
-     *
-     * @async
-     * @param {Metadata} metadata
-     * @returns {Promise<void>}
-     */
-    setMetadata(metadata: Metadata): Promise<void>;
-  }
-}
-export = PDFMerger;
-
-declare type PdfInput =
+type PdfInput =
   | Uint8Array
   | ArrayBuffer
   | Blob
@@ -62,9 +14,38 @@ declare type PdfInput =
   | PathLike
   | string;
 
-declare interface Metadata {
+interface Metadata {
   producer?: string;
   author?: string;
   title?: string;
   creator?: string;
 }
+
+declare class PDFMerger {
+  constructor();
+  /**
+   * Resets the internal state of the document, to start again.
+   */
+  reset(): void;
+  /**
+   * Add pages from a PDF document to the end of the merged document.
+   */
+  add(
+    inputFile: PdfInput,
+    pages?: string | string[] | number | number[] | undefined | null
+  ): Promise<void>;
+  /**
+   * Save the merged PDF to the given path.
+   */
+  save(fileName: string): Promise<void>;
+  /**
+   * Return the merged PDF as a Buffer.
+   */
+  saveAsBuffer(): Promise<Buffer>;
+  /**
+   * Set the metadata of the merged PDF.
+   */
+  setMetadata(metadata: Metadata): Promise<void>;
+}
+
+export = PDFMerger;
