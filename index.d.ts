@@ -48,4 +48,4 @@ declare class PDFMerger {
   setMetadata(metadata: Metadata): Promise<void>;
 }
 
-export = PDFMerger;
+export default PDFMerger;
